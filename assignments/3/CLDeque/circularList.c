@@ -42,7 +42,7 @@ static struct Link* createLink(TYPE value)
 	link = (struct Link *) malloc( sizeof(struct Link) );
 	link->next = NULL;
 	link->prev = NULL;
-	link->value = value;	
+	link->value = value;
 	return link;
 }
 
@@ -55,6 +55,8 @@ static void addLinkAfter(struct CircularList* list, struct Link* link, TYPE valu
 	// FIXME: you must write this
 	struct Link *newLink;
 	newLink = createLink(value);
+	newLink->prev = link;
+	newLink->next = link->next;
 	link->next->prev = newLink;
 	link->next = newLink;
 	list->size++;
@@ -70,10 +72,11 @@ static void removeLink(struct CircularList* list, struct Link* link)
 	struct Link *iterator;
 	iterator = list->sentinel;
 	while (iterator->next != link) {
-		iterator->next = iterator->next->next;
-	}	
+		iterator = iterator->next;
+	}
 	iterator->next = link->next;
 	free(link);
+	list->size--;
 }
 
 /**
@@ -92,7 +95,10 @@ struct CircularList* circularListCreate()
 void circularListDestroy(struct CircularList* list)
 {
 	// FIXME: you must write this
-	
+	while(!circularListIsEmpty(list)) {
+	   circularListRemoveFront(list);
+	}
+	free(list);
 }
 
 /**
@@ -101,15 +107,7 @@ void circularListDestroy(struct CircularList* list)
 void circularListAddFront(struct CircularList* list, TYPE value)
 {
 	// FIXME: you must write this
-	struct Link *newLink = createLink(value);
-	if (list->sentinel != NULL) {
-		newLink->prev = list->sentinel->prev;
-		list->sentinel->prev->next = newLink;
-		newLink->next = list->sentinel->next;
-		list->sentinel->prev = newLink;
-	}
-	list->sentinel = newLink;
-	list->size++;
+	addLinkAfter(list, list->sentinel, value);
 }
 
 /**
@@ -119,10 +117,10 @@ void circularListAddBack(struct CircularList* list, TYPE value)
 {
 	// FIXME: you must write this
 	struct Link *newLink = createLink(value);
-        struct Link *oldEnd = list->sentinel->prev;
+  struct Link *oldEnd = list->sentinel->prev;
 	oldEnd->next = newLink;
 	list->sentinel->prev = newLink;
-	list->size++; 			
+	list->size++;
 }
 
 /**
@@ -157,10 +155,7 @@ TYPE circularListBack(struct CircularList* list)
 void circularListRemoveFront(struct CircularList* list)
 {
 	// FIXME: you must write this
-	struct Link *oldFront = list->sentinel->next;
-	list->sentinel->next = oldFront->next;
-	list->sentinel->prev = list->sentinel->next->prev;
-	free(oldFront);
+	removeLink(list, list->sentinel->next);
 }
 
 /**
@@ -169,10 +164,7 @@ void circularListRemoveFront(struct CircularList* list)
 void circularListRemoveBack(struct CircularList* list)
 {
 	// FIXME: you must write this
-	struct Link *oldBack = list->sentinel->prev;
-	list->sentinel->prev = oldBack->prev;
-	list->sentinel->next = list->sentinel->prev->next;
-	free(oldBack);
+	removeLink(list, list->sentinel->prev);
 }
 
 /**
