@@ -1,0 +1,8 @@
+Name: Alexander Miranda
+Date: April 8th, 2016
+
+1. The total cost units to do 32 consecutive pushes onto an empty array which starts out with a capacity of 8 that doubles in capacity when that size is reached is 56. The costs are calculated as such: 8 + 9 + 7 + 17 + 15 = 56. The big-oh complexity that results when the amount inserted becomes large would be a big-oh of n (O(n)).
+
+2.  The total cost units to do 32 consecutive pushes onto an empty array which starts out at capacity 8, where the array only increases by 2 each time the an item is added to an already full array is 260 cost units. The big-oh complexity for a push in this case would be O(n).
+
+3. The best way to arrive at poor performance would be to push until you reach the capacity so the array then doubles. Then you would pop a value from the stack which would trigger the shrink because the pop causes the size to drop below half of the new capacity. In order to prevent this outcome the array's shrinking mechanism should be altered to shrink to half the size when the array is only a quarter or less full.
