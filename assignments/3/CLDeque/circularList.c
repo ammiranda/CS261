@@ -98,6 +98,7 @@ void circularListDestroy(struct CircularList* list)
 	while(!circularListIsEmpty(list)) {
 	   circularListRemoveFront(list);
 	}
+	free(list->sentinel);
 	free(list);
 }
 
