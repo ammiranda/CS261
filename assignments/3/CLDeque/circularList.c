@@ -151,7 +151,9 @@ TYPE circularListBack(struct CircularList* list)
 void circularListRemoveFront(struct CircularList* list)
 {
 	// FIXME: you must write this
-	removeLink(list, list->sentinel->next);
+	if (list->size > 0) {
+		removeLink(list, list->sentinel->next);
+	}
 }
 
 /**
@@ -160,7 +162,9 @@ void circularListRemoveFront(struct CircularList* list)
 void circularListRemoveBack(struct CircularList* list)
 {
 	// FIXME: you must write this
-	removeLink(list, list->sentinel->prev);
+	if (list->size > 0) {
+		removeLink(list, list->sentinel->prev);
+	}
 }
 
 /**

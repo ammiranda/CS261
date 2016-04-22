@@ -111,7 +111,8 @@ void linkedListAddFront(struct LinkedList* list, TYPE value)
 void linkedListAddBack(struct LinkedList* list, TYPE value)
 {
 	// FIXME: you must write this
-	
+	assert(list != NULL);
+	addLinkBefore(list, list->backSentinel, value);	
 }
 
 /**
@@ -178,7 +179,7 @@ void linkedListPrint(struct LinkedList* list)
 	assert(!linkedListIsEmpty(list));
 	struct Link *cur = list->frontSentinel->next;
 	assert(cur != 0);
-	while(cur != list->backSentinel->prev) {
+	while(cur != list->backSentinel) {
 		printf("%d\n", cur->value);
 		cur = cur->next;
 	}
@@ -220,12 +221,13 @@ void linkedListRemove(struct LinkedList* list, TYPE value)
 	assert(list != NULL);
 	assert(!linkedListIsEmpty(list));
 	struct Link *cur = list->frontSentinel->next;
-	while (cur != list->backSentinel->prev) {
+	while (cur != list->backSentinel) {
 		if (cur->value == value) {
 			cur->prev->next = cur->next;
 			cur->next->prev = cur->prev;
 			free(cur);
 			list->size--;
+			break;
 		}
 		cur = cur->next;
 	}

@@ -44,10 +44,14 @@ int main(int argc, char* argv[])
 
 	struct LinkedList* list = linkedListCreate(); 
 	int numElements = atoi(argv[1]);
-	for (int i = 0 ; i < numElements; i++)
+	for (int i = 1 ; i <= numElements; i++)
 	{
-		linkedListAdd(list, (TYPE)i);
+		linkedListAddBack(list, (TYPE)i);
+		linkedListRemoveFront(list);
 	}
+
+	linkedListAddBack(list, (TYPE)10);
+        linkedListPrint(list);
 
 	#ifdef MEMORY_TEST_INCLUDED
 	// Memory used AFTER creating LinkedList
