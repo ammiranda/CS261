@@ -22,7 +22,8 @@ typedef struct DynArr DynArr;
 
 
 /* Dynamic Array Functions */
-DynArr *createDynArr(int cap);
+void initDynArr(DynArr *v, int capacity);
+DynArr *newDynArr(int cap);
 void deleteDynArr(DynArr *v);
 
 int sizeDynArr(DynArr *v);

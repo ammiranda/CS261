@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 	
-	DynArr *a = newDynArr(1024);
+        DynArr *a = newDynArr(1024);
 	int numElements = atoi(argv[1]);
 	for (int i = 0 ; i < numElements; i++)
 	{
