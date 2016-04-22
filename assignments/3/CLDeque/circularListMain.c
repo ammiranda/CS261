@@ -7,13 +7,13 @@ int main()
 	circularListAddBack(deque, (TYPE)1);
 	circularListAddBack(deque, (TYPE)2);
 	circularListAddBack(deque, (TYPE)3);
-	//circularListPrint(deque);
+	circularListPrint(deque);
 	circularListAddFront(deque, (TYPE)4);
 	circularListAddFront(deque, (TYPE)5);
 	circularListAddFront(deque, (TYPE)6);
 	circularListPrint(deque);
 
-  printf("printing first and last node values\n");
+  	printf("printing first and last node values\n");
 	printf("%g\n", circularListFront(deque));
 	printf("%g\n", circularListBack(deque));
 

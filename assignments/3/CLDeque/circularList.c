@@ -116,12 +116,7 @@ void circularListAddFront(struct CircularList* list, TYPE value)
  */
 void circularListAddBack(struct CircularList* list, TYPE value)
 {
-	// FIXME: you must write this
-	struct Link *newLink = createLink(value);
-  struct Link *oldEnd = list->sentinel->prev;
-	oldEnd->next = newLink;
-	list->sentinel->prev = newLink;
-	list->size++;
+	addLinkAfter(list, list->sentinel->prev, value);
 }
 
 /**
@@ -173,12 +168,8 @@ void circularListRemoveBack(struct CircularList* list)
  */
 int circularListIsEmpty(struct CircularList* list)
 {
-	int ans = 0;
 	// FIXME: you must write this
-	if (list->size == 0) {
-		ans = 1;
-	}
-	return ans;
+	return list->size == 0;
 }
 
 /**
