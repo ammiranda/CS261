@@ -203,7 +203,7 @@ int linkedListContains(struct LinkedList* list, TYPE value)
 	assert(list != NULL);
 	assert(!linkedListIsEmpty(list));
 	struct Link *cur = list->frontSentinel->next;
-	while(cur != list->backSentinel->prev) {
+	while(cur != list->backSentinel) {
 		if (cur->value == value) {
 			return 1;
 		}
