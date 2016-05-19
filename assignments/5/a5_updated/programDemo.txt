@@ -1,0 +1,223 @@
+flip ~/cs261/as5/todo_list 605% ./prog
+
+
+** TO-DO LIST APPLICATION **
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+g
+Your to-do list is empty!
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+a
+Please enter the task description: do assignment 5
+Please enter the task priority (0-999): 3
+The task 'do assignment 5' has been added to your to-do list.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+a
+Please enter the task description: study heap-based priority queue
+Please enter the task priority (0-999): 1
+The task 'study heap-based priority queue' has been added to your to-do list.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+a
+Please enter the task description: review trees for Final exam
+Please enter the task priority (0-999): 101
+The task 'review trees for Final exam' has been added to your to-do list.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+g
+Your first task is: study heap-based priority queue
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+a
+Please enter the task description: take a nap
+Please enter the task priority (0-999): 0
+The task 'take a nap' has been added to your to-do list.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+s
+Please enter the filename: todo.txt
+The list has been saved into the file successfully.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+e
+Bye!
+
+============
+
+flip ~/cs261/as5/todo_list 613% ./prog
+
+
+** TO-DO LIST APPLICATION **
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+g
+Your to-do list is empty!
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+l
+Please enter the filename: todo.txt
+The list has been loaded from file successfully.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+g
+Your first task is: take a nap
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+r
+Your first task 'take a nap' has been removed from the list.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+p
+study heap-based priority queue
+
+do assignment 5
+
+review trees for Final exam
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+r
+Your first task 'study heap-based priority queue' has been removed from the list.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+r
+Your first task 'do assignment 5' has been removed from the list.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+r
+Your first task 'review trees for Final exam' has been removed from the list.
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+r
+Your to-do list is empty!
+
+Press:
+'l' to load to-do list from a file
+'s' to save to-do list to a file
+'a' to add a new task
+'g' to get the first task
+'r' to remove the first task
+'p' to print the list
+'e' to exit the program
+e
+Bye!
