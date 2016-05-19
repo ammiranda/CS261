@@ -227,6 +227,13 @@ int dyOrderedContains(DynamicArray* bag, TYPE value, compareFunction compare)
 void adjustHeap(DynamicArray* heap, int last, int position, compareFunction compare)
 {
     // FIXME: implement
+    int left = (2 * position) + 1;
+    int right = (2 * position) + 2;
+    int min;
+
+    if (right <= max) {
+        min = 
+    }
 }
 
 /**
@@ -237,6 +244,11 @@ void adjustHeap(DynamicArray* heap, int last, int position, compareFunction comp
 void buildHeap(DynamicArray* heap, compareFunction compare)
 {
     // FIXME: implement
+    int max_idx = heap->size - 1;
+    
+    for (int i = (max_idx - 1) / 2; i >= 0; i--) {
+        adjustHeap(heap, max_idx, i, compare);
+    }
 }
 
 /**
@@ -253,15 +265,16 @@ void dyHeapAdd(DynamicArray* heap, TYPE value, compareFunction compare)
 
     assert(heap != 0);
     
-    if (heap->size == heap->capacity) {
-       setCapacity(heap, heap->capacity * 2);
-    }
-    heap->data[heap->size] = value;
-    heap->size++;
-    i = 
+    dyAdd(heap, value);
+    i = heap->size - 1;
+    parent_index = (i - 1) / 2;
+    parent_value = heap->data[parent_index];
 
-    while (index != 0) {
+    while (i > 0 && compare(value, parent_value) == -1) {
+       dySwap(heap, i, parent_index);
+       i = parent_index;
        parent_index = (i - 1) / 2;
+       parent_value = heap->data[parent_index];
     }
 }
 
