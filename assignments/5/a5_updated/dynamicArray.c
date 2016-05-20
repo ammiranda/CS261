@@ -231,8 +231,10 @@ void adjustHeap(DynamicArray* heap, int last, int position, compareFunction comp
     int right = (2 * position) + 2;
     int min;
 
-    if (right <= max) {
+    if (right < max) {
         min = 
+    } else if (left < max) {
+        
     }
 }
 

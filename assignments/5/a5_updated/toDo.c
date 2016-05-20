@@ -1,7 +1,7 @@
 /*
  * CS 261 Assignment 5
- * Name: 
- * Date: 
+ * Name: Alexander Miranda
+ * Date: May 20, 2016
  */
 
 #include "dynamicArray.h"
@@ -70,7 +70,79 @@ void listPrint(DynamicArray* heap)
  */
 void handleCommand(DynamicArray* list, char command)
 {
+    char *filename = malloc(sizeof(char) * 256);
+    char *desc = malloc(sizeof(char) * 256);
+    int priority;
     // FIXME: Implement
+    switch(command) {
+        case 'l':
+            printf("Please enter the filename: ");
+            fgets(filename, 100, stdin);
+            if (filename[strlen(filename) - 1] == '\n') {
+                filename[strlen(filename) - 1] = 0;
+            }
+            FILE *reader = fopen(filename, "r");
+            listLoad(list, reader);
+            printf("The list has been loaded successfully from the file.\n");
+            fclose(reader);
+            break;
+
+        case 's':
+            printf("Please enter the filename: ");
+            fgets(filename, 100, stdin);
+            if (filename[strlen(filename) - 1] == '\n') {
+                filename[strlen(filename) - 1] = 0;
+            }
+            FILE *writer = fopen(filename, "w+");
+            listSave(list, writer);
+            printf("The list was saved to the specified file.\n");
+            fclose(writer);
+            break;
+
+        case 'a':
+            printf("Please enter the task description: ");
+            fgets(desc, 100, stdin);
+            if (desc[strlen(desc) - 1] == '\n') {
+                desc[strlen(desc) - 1] = 0;
+            }
+            printf("Please enter the task priority (0-999): ");
+            scanf("%d", &priority);
+            while (getchar() != '\n');
+            Task *task = taskNew(priority, desc);
+            dyHeapAdd(list, task, taskCompare);
+            printf("The task '%s' has been added to the list.\n", desc);
+            break;
+
+        case 'g':
+            if (list->size != 0) {
+                printf("The first task is: %s\n", ((struct Task *)dyHeapGetMin(list))->name);
+            } else {
+                printf("The list is empty\n");
+            }
+            break;
+
+        case 'r':
+            if (list->size == 0) {
+                printf("The list is empty\n");
+            } else {
+                desc = ((struct Task *)dyHeapGetMin(list))->name;
+                dyHeapRemoveMin(list, taskCompare);
+                printf("'%s' was been removed from the list.\n", desc);
+            }
+            break;
+
+        case 'p':
+            if (list->size == 0) {
+                printf("The list is empty\n");
+            } else {
+
+            }
+            break;
+
+        case 'e':
+            printf("Exiting the application\n");
+            break;
+    }
 }
 
 int main()

@@ -1,7 +1,7 @@
 /*
  * CS 261 Assignment 5
- * Name: 
- * Date: 
+ * Name: Alexander Miranda
+ * Date: 05/20/2016
  */
 
 #include "task.h"
@@ -17,8 +17,11 @@
  */
 Task* taskNew(int priority, char* name)
 {
-    // FIXME: implement
-    return NULL;
+    Task * newTask = (struct Task *)malloc(sizeof(struct Task));
+    strcpy(newTask->name, name);
+    newTask->priority = priority;
+
+    return newTask;
 }
 
 /**
@@ -41,8 +44,18 @@ void taskDelete(Task* task)
  */
 int taskCompare(void* left, void* right)
 {
-    // FIXME: implement
-    return 0;
+    Task* l = (Task*) left;
+    Task* r = (Task*) right;
+
+    int compare_val = 0;
+
+    if (l->priority < r->priority) {
+        compare_val = -1;
+    } else if (l->priority > r->priority) {
+        compare_val = 1;
+    }
+    
+    return compare_val;
 }
 
 /**
