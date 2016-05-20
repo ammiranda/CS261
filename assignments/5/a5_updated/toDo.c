@@ -114,7 +114,7 @@ void handleCommand(DynamicArray* list, char command)
             break;
 
         case 'g':
-            if (list->size != 0) {
+            if (dySize(list) != 0) {
                 printf("The first task is: %s\n", ((struct Task *)dyHeapGetMin(list))->name);
             } else {
                 printf("The list is empty\n");
@@ -122,7 +122,7 @@ void handleCommand(DynamicArray* list, char command)
             break;
 
         case 'r':
-            if (list->size == 0) {
+            if (dySize(list) == 0) {
                 printf("The list is empty\n");
             } else {
                 desc = ((struct Task *)dyHeapGetMin(list))->name;
@@ -132,10 +132,10 @@ void handleCommand(DynamicArray* list, char command)
             break;
 
         case 'p':
-            if (list->size == 0) {
+            if (dySize(list) == 0) {
                 printf("The list is empty\n");
             } else {
-
+                listPrint(list);
             }
             break;
 

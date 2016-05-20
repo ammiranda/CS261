@@ -54,7 +54,7 @@ int taskCompare(void* left, void* right)
     } else if (l->priority > r->priority) {
         compare_val = 1;
     }
-    
+
     return compare_val;
 }
 
@@ -64,6 +64,6 @@ int taskCompare(void* left, void* right)
  */
 void taskPrint(void* value)
 {
-    Task* task = (Task*)value;
+    struct Task* task = (struct Task*)value;
     printf("(%d, %s)", task->priority, task->name);
 }

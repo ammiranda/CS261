@@ -231,10 +231,21 @@ void adjustHeap(DynamicArray* heap, int last, int position, compareFunction comp
     int right = (2 * position) + 2;
     int min;
 
-    if (right < max) {
-        min = 
-    } else if (left < max) {
-        
+    if (right < last) {
+        if (compare(dyGet(heap, left), dyGet(heap, right)) == -1) {
+            min = left;
+        } else {
+            min = right;
+        }
+        if (compare(dyGet(heap, min), dyGet(heap, position)) == -1) {
+            dySwap(heap, position, min);
+            adjustHeap(heap, last, min, compare);
+        }
+    } else if (left < last) {
+        if (compare(dyGet(heap, left), dyGet(heap, position)) == -1) {
+            dySwap(heap, position, left);
+            adjustHeap(heap, last, left, compare);
+        }
     }
 }
 
@@ -270,7 +281,7 @@ void dyHeapAdd(DynamicArray* heap, TYPE value, compareFunction compare)
     dyAdd(heap, value);
     i = heap->size - 1;
     parent_index = (i - 1) / 2;
-    parent_value = heap->data[parent_index];
+    int parent_value = heap->data[parent_index];
 
     while (i > 0 && compare(value, parent_value) == -1) {
        dySwap(heap, i, parent_index);
@@ -289,11 +300,11 @@ void dyHeapRemoveMin(DynamicArray* heap, compareFunction compare)
 {
     // FIXME: implement
     assert(heap != 0);
-    assert(heap->size != 0);
+    assert(dySize(heap) != 0);
     
-    heap->data[0] = heap->data[heap->size - 1];
-    heap->size--;
-    adjustHeap(heap, heap->size - 1, 0, compare);
+    dySwap(heap, 0, dySize(heap) - 1);
+    dyStackPop(heap);
+    adjustHeap(heap, dySize(heap) - 1, 0, compare);
 }
 
 /**
@@ -305,7 +316,7 @@ TYPE dyHeapGetMin(DynamicArray* heap)
 {
     // FIXME: implement
     assert(heap != 0);
-    assert(heap->size != 0);
+    assert(dySize(heap) != 0);
     return heap->data[0];
 }
 
