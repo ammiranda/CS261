@@ -85,6 +85,7 @@ void handleCommand(DynamicArray* list, char command)
             FILE *reader = fopen(filename, "r");
             listLoad(list, reader);
             printf("The list has been loaded successfully from the file.\n");
+            printf("\n");
             fclose(reader);
             break;
 
@@ -97,6 +98,7 @@ void handleCommand(DynamicArray* list, char command)
             FILE *writer = fopen(filename, "w+");
             listSave(list, writer);
             printf("The list was saved to the specified file.\n");
+            printf("\n");
             fclose(writer);
             break;
 
@@ -112,6 +114,7 @@ void handleCommand(DynamicArray* list, char command)
             Task *task = taskNew(priority, desc);
             dyHeapAdd(list, task, taskCompare);
             printf("The task '%s' has been added to the list.\n", desc);
+            printf("\n");
             break;
 
         case 'g':
@@ -120,6 +123,7 @@ void handleCommand(DynamicArray* list, char command)
             } else {
                 printf("Your to-do list is empty!\n");
             }
+            printf("\n");
             break;
 
         case 'r':
@@ -130,6 +134,7 @@ void handleCommand(DynamicArray* list, char command)
                 dyHeapRemoveMin(list, taskCompare);
                 printf("Your first task '%s' has been removed from the list.\n", desc);
             }
+            printf("\n");
             break;
 
         case 'p':

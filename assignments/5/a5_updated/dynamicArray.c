@@ -316,7 +316,7 @@ TYPE dyHeapGetMin(DynamicArray* heap)
 {
     // FIXME: implement
     assert(heap != 0);
-    //assert(dySize(heap) != 0);
+    assert(dySize(heap) != 0);
     return heap->data[0];
 }
 
