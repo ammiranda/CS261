@@ -60,6 +60,7 @@ void listPrint(DynamicArray* heap)
         printf("\n");
         dyHeapRemoveMin(temp, taskCompare);
     }
+    printf("\n");
     dyDelete(temp);
 }
 
@@ -115,32 +116,32 @@ void handleCommand(DynamicArray* list, char command)
 
         case 'g':
             if (dySize(list) != 0) {
-                printf("The first task is: %s\n", ((struct Task *)dyHeapGetMin(list))->name);
+                printf("Your first task is: %s\n", ((struct Task *)dyHeapGetMin(list))->name);
             } else {
-                printf("The list is empty\n");
+                printf("Your to-do list is empty!\n");
             }
             break;
 
         case 'r':
             if (dySize(list) == 0) {
-                printf("The list is empty\n");
+                printf("Your to-do list is empty!\n");
             } else {
                 desc = ((struct Task *)dyHeapGetMin(list))->name;
                 dyHeapRemoveMin(list, taskCompare);
-                printf("'%s' was been removed from the list.\n", desc);
+                printf("Your first task '%s' has been removed from the list.\n", desc);
             }
             break;
 
         case 'p':
             if (dySize(list) == 0) {
-                printf("The list is empty\n");
+                printf("Your to-do list is empty!\n");
             } else {
                 listPrint(list);
             }
             break;
 
         case 'e':
-            printf("Exiting the application\n");
+            printf("Bye!\n");
             break;
     }
 }
