@@ -41,6 +41,7 @@ void listSave(DynamicArray* heap, FILE* file)
     {
         Task* task = dyGet(heap, i);
         fprintf(file, "%d, %s\n", task->priority, task->name);
+        free(task);
     }
 }
 
@@ -115,6 +116,7 @@ void handleCommand(DynamicArray* list, char command)
             dyHeapAdd(list, task, taskCompare);
             printf("The task '%s' has been added to the list.\n", desc);
             printf("\n");
+            free(task);
             break;
 
         case 'g':
@@ -149,6 +151,8 @@ void handleCommand(DynamicArray* list, char command)
             printf("Bye!\n");
             break;
     }
+    free(desc);
+    free(filename);
 }
 
 int main()
