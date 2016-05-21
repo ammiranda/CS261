@@ -316,7 +316,7 @@ TYPE dyHeapGetMin(DynamicArray* heap)
 {
     // FIXME: implement
     assert(heap != 0);
-    assert(dySize(heap) != 0);
+    //assert(dySize(heap) != 0);
     return heap->data[0];
 }
 
@@ -389,9 +389,9 @@ void dyCopy(DynamicArray* source, DynamicArray* destination)
 {
     free(destination->data);
     init(destination, source->capacity);
-    for (int i = 0; i < source->size; i++)
+    for (int i = 0; i < dySize(source); i++)
     {
         destination->data[i] = source->data[i];
     }
-    destination->size = source->size;
+    destination->size = dySize(source);
 }

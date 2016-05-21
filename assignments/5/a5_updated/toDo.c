@@ -50,9 +50,9 @@ void listSave(DynamicArray* heap, FILE* file)
  */
 void listPrint(DynamicArray* heap)
 {
-    DynamicArray* temp = dyNew(1);
+    DynamicArray* temp = dyNew(dySize(heap));
     dyCopy(heap, temp);
-    while (dySize(heap) > 0)
+    while (dySize(temp) > 0)
     {
         Task* task = dyHeapGetMin(temp);
         printf("\n");
