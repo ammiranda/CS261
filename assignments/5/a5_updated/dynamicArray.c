@@ -257,10 +257,10 @@ void adjustHeap(DynamicArray* heap, int last, int position, compareFunction comp
 void buildHeap(DynamicArray* heap, compareFunction compare)
 {
     // FIXME: implement
-    int max_idx = heap->size - 1;
+    int size = dySize(heap);
     
-    for (int i = (max_idx - 1) / 2; i >= 0; i--) {
-        adjustHeap(heap, max_idx, i, compare);
+    for (int i = size / 2 - 1; i >= 0; i--) {
+        adjustHeap(heap, size, i, compare);
     }
 }
 
@@ -281,7 +281,7 @@ void dyHeapAdd(DynamicArray* heap, TYPE value, compareFunction compare)
     dyAdd(heap, value);
     i = heap->size - 1;
     parent_index = (i - 1) / 2;
-    int parent_value = heap->data[parent_index];
+    void* parent_value = heap->data[parent_index];
 
     while (i > 0 && compare(value, parent_value) == -1) {
        dySwap(heap, i, parent_index);
@@ -304,7 +304,7 @@ void dyHeapRemoveMin(DynamicArray* heap, compareFunction compare)
     
     dySwap(heap, 0, dySize(heap) - 1);
     dyStackPop(heap);
-    adjustHeap(heap, dySize(heap) - 1, 0, compare);
+    adjustHeap(heap, dySize(heap), 0, compare);
 }
 
 /**
