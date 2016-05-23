@@ -301,9 +301,9 @@ void dyHeapRemoveMin(DynamicArray* heap, compareFunction compare)
     // FIXME: implement
     assert(heap != 0);
     assert(dySize(heap) != 0);
-    
-    dySwap(heap, 0, dySize(heap) - 1);
-    dyStackPop(heap);
+ 
+    heap->data[0] = heap->data[dySize(heap) - 1];
+    heap->size--;
     adjustHeap(heap, dySize(heap), 0, compare);
 }
 

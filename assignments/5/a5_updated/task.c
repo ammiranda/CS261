@@ -17,7 +17,7 @@
  */
 Task* taskNew(int priority, char* name)
 {
-    Task * newTask = (struct Task *)malloc(sizeof(struct Task));
+    Task *newTask = malloc(sizeof(Task));
     strcpy(newTask->name, name);
     newTask->priority = priority;
 
@@ -64,6 +64,6 @@ int taskCompare(void* left, void* right)
  */
 void taskPrint(void* value)
 {
-    struct Task* task = (struct Task*)value;
-    printf("%s", task->name);
+    Task* task = (Task*)value;
+    printf("(%d, %s)", task->priority, task->name);
 }

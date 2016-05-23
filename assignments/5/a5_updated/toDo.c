@@ -17,7 +17,7 @@
  * @param file
  */
 void listLoad(DynamicArray* heap, FILE* file)
-{
+{   
     const int FORMAT_LENGTH = 256;
     char format[FORMAT_LENGTH];
     snprintf(format, FORMAT_LENGTH, "%%d, %%%d[^\n]", TASK_NAME_SIZE);
@@ -41,7 +41,6 @@ void listSave(DynamicArray* heap, FILE* file)
     {
         Task* task = dyGet(heap, i);
         fprintf(file, "%d, %s\n", task->priority, task->name);
-        free(task);
     }
 }
 
@@ -98,7 +97,7 @@ void handleCommand(DynamicArray* list, char command)
             }
             FILE *writer = fopen(filename, "w+");
             listSave(list, writer);
-            printf("The list was saved to the specified file.\n");
+            printf("The list was saved to the file: '%s'.\n", filename);
             printf("\n");
             fclose(writer);
             break;
@@ -116,7 +115,6 @@ void handleCommand(DynamicArray* list, char command)
             dyHeapAdd(list, task, taskCompare);
             printf("The task '%s' has been added to the list.\n", desc);
             printf("\n");
-            free(task);
             break;
 
         case 'g':
@@ -132,9 +130,10 @@ void handleCommand(DynamicArray* list, char command)
             if (dySize(list) == 0) {
                 printf("Your to-do list is empty!\n");
             } else {
-                desc = ((struct Task *)dyHeapGetMin(list))->name;
+                struct Task* t = (struct Task*)dyHeapGetMin(list);
+                printf("Your first task '%s' has been removed from the list.\n",t->name);
                 dyHeapRemoveMin(list, taskCompare);
-                printf("Your first task '%s' has been removed from the list.\n", desc);
+                taskDelete(t);
             }
             printf("\n");
             break;
@@ -178,6 +177,10 @@ int main()
         handleCommand(list, command);
     }
     while (command != 'e');
+    for (int i = 0; i < dySize(list); i++) {
+       Task *t = dyGet(list, i);
+       taskDelete(t);
+    }
     dyDelete(list);
     return 0;
 }
