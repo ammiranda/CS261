@@ -5,12 +5,6 @@
 #include <time.h>
 #include <assert.h>
 
-/**
- * Allocates a string for the next word in the file and returns it. This string
- * is null terminated. Returns NULL after reaching the end of the file.
- * @param file
- * @return Allocated string or NULL.
- */
 char* nextWord(FILE* file)
 {
     int maxLength = 16;
@@ -46,14 +40,6 @@ char* nextWord(FILE* file)
     return word;
 }
 
-/**
- * Prints the concordance of the given file and performance information. Uses
- * the file input1.txt by default or a file name specified as a command line
- * argument.
- * @param argc
- * @param argv
- * @return
- */
 int main(int argc, const char** argv)
 {
     // FIXME: implement
@@ -72,7 +58,15 @@ int main(int argc, const char** argv)
     // Be sure to free the word after you are done with it here.
     // --- Concordance code ends here ---
 
-    
+    FILE *file = fopen(fileName, "r");
+
+    char* word = nextWord(file);
+
+    while (word != NULL) {
+    	hashMapPut(map, word, 1);
+    	free(word);
+    	word = nextWord(file);
+    }
     
     hashMapPrint(map);
     
@@ -83,6 +77,6 @@ int main(int argc, const char** argv)
     printf("Number of buckets: %d\n", hashMapCapacity(map));
     printf("Table load: %f\n", hashMapTableLoad(map));
     
-    hashMapDelete(map);
+    //hashMapDelete(map);
     return 0;
 }
