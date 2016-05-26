@@ -72,7 +72,15 @@ int main(int argc, const char** argv)
     // Be sure to free the word after you are done with it here.
     // --- Concordance code ends here ---
 
-    
+    FILE *file = fopen(fileName, "r");
+
+    char* word = nextWord(file);
+
+    while (word != NULL) {
+        hashMapPut(map, word, 1);
+        free(word);
+        word = nextWord(file);
+    }
     
     hashMapPrint(map);
     
@@ -83,6 +91,6 @@ int main(int argc, const char** argv)
     printf("Number of buckets: %d\n", hashMapCapacity(map));
     printf("Table load: %f\n", hashMapTableLoad(map));
     
-    hashMapDelete(map);
+    //hashMapDelete(map);
     return 0;
 }
