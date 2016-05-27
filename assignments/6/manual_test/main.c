@@ -43,7 +43,7 @@ char* nextWord(FILE* file)
 int main(int argc, const char** argv)
 {
     // FIXME: implement
-    const char* fileName = "input3.txt";
+    const char* fileName = "input1.txt";
     if (argc > 1)
     {
         fileName = argv[1];
@@ -58,15 +58,15 @@ int main(int argc, const char** argv)
     // Be sure to free the word after you are done with it here.
     // --- Concordance code ends here ---
 
-    // FILE *file = fopen(fileName, "r");
+    FILE *file = fopen(fileName, "r");
 
-    // char* word = nextWord(file);
+    char* word = nextWord(file);
 
-    // while (word != NULL) {
-    // 	hashMapPut(map, word, 1);
-    // 	free(word);
-    // 	word = nextWord(file);
-    // }
+    while (word != NULL) {
+     	hashMapPut(map, word, 1);
+     	free(word);
+     	word = nextWord(file);
+    }
 
     hashMapPut(map, "ab", 0);
     hashMapPut(map, "c", 1);

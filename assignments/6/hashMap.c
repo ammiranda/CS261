@@ -56,7 +56,6 @@ static void hashLinkDelete(HashLink* link)
 {
     assert(link != NULL);
     assert(link->key != NULL);
-    printf("%s ", link->key);
     free(link->key);
     free(link);
 }

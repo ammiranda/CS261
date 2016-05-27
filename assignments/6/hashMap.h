@@ -6,7 +6,7 @@
  * Assignment 6
  */
 
-#define HASH_FUNCTION hashFunction1
+#define HASH_FUNCTION hashFunction2
 #define MAX_TABLE_LOAD .75
 
 typedef struct HashMap HashMap;

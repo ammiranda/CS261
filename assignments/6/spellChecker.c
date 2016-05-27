@@ -54,6 +54,14 @@ char* nextWord(FILE* file)
 void loadDictionary(FILE* file, HashMap* map)
 {
     // FIXME: implement
+    char* word = nextWord(file);
+   
+    while (word) {
+       hashMapPut(map, word, 1);
+       word = nextWord(file);
+    }
+
+    free(word);
 }
 
 /**
@@ -84,13 +92,14 @@ int main(int argc, const char** argv)
         scanf("%s", inputBuffer);
         
         // Implement the spell checker code here..
+	
         
         if (strcmp(inputBuffer, "quit") == 0)
         {
             quit = 1;
         }
     }
-    
+    hashMapPrint(map);    
     hashMapDelete(map);
     return 0;
 }

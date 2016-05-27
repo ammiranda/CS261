@@ -1,0 +1,10 @@
+Name: Alexander Miranda
+Date: May 25, 2016
+
+1. The words "tea" and "eat" would hash to the same value when using hashFunction1 but not when using hashFunction2.
+
+2. The second hash function is superior to the first hash function because it better minimizes the number of links assigned to the same bucket which helps the hash table to maintain O(1) link lookup.
+
+3. It is not possible for the hashMapSize function to return different values when the same input file is used because the same words would be inputted which would result in the same number of HashLinks.
+
+4.  
