@@ -281,6 +281,7 @@ void hashMapRemove(HashMap* map, const char* key)
         }
 
         hashLinkDelete(cur);
+        map->size--;
     }
 }
 
