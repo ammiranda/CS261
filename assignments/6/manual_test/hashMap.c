@@ -94,7 +94,7 @@ void hashMapCleanUp(HashMap* map)
     for (int i = 0; i < map->capacity; i++) {
        cur = map->table[i];
        while(cur != NULL) {
-          next = cur->next
+          next = cur->next;
           hashLinkDelete(cur);
           cur = next;
        }
@@ -239,7 +239,7 @@ void hashMapPut(HashMap* map, const char* key, int value)
     loadFact = hashMapTableLoad(map);
 
     if (loadFact >= MAX_TABLE_LOAD) {
-        resizeTable(map, 2 * mapCap);
+        //resizeTable(map, 2 * mapCap);
     }
 
     hashMapPrint(map);
