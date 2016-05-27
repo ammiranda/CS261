@@ -56,6 +56,7 @@ static void hashLinkDelete(HashLink* link)
 {
     assert(link != NULL);
     assert(link->key != NULL);
+    printf("%s ", link->key);
     free(link->key);
     free(link);
 }
@@ -172,8 +173,6 @@ int* hashMapGet(HashMap* map, const char* key)
 void resizeTable(HashMap* map, int capacity)
 {
     // FIXME: implement
-    int idx;
-    int tempSize = hashMapSize(map);
     int oldMapCap = hashMapCapacity(map);
     HashMap* temp = hashMapNew(capacity);
 
@@ -247,8 +246,6 @@ void hashMapPut(HashMap* map, const char* key, int value)
     if (loadFact >= MAX_TABLE_LOAD) {
         resizeTable(map, 2 * mapCap);
     }
-
-    hashMapPrint(map);
 }
 
 /**
@@ -264,31 +261,28 @@ void hashMapRemove(HashMap* map, const char* key)
     assert(map != NULL);
     assert(key != NULL);
 
-    HashLink* cur;
-    HashLink* pre = NULL;
-    int idx = HASH_FUNCTION(key) % map->capacity;
-    
-    if (idx < 0) {
-       idx += hashMapCapacity(map);
-    }
+    int idx = HASH_FUNCTION(key) % hashMapCapacity(map);
 
-    cur = map->table[idx];
+    HashLink* cur = map->table[idx];
+    HashLink* pre = NULL;
 
     if (cur != NULL) {
-        while(strcmp(cur->key, key) != 0) {
-           pre = cur;
-           cur = cur->next;
-        }
-
-        if (pre) {
-           pre->next = cur->next;
+        if (strcmp(cur->key, key) == 0) {
+            map->table[idx] = cur->next;
         } else {
-           map->table[idx] = NULL;
-        }
+            while (strcmp(cur->key, key) != 0) {
+                pre = cur;
+                cur = cur->next;
+            }
 
+            if (pre) {
+                pre->next = cur->next;
+            }
+        }
         hashLinkDelete(cur);
         map->size--;
     }
+
 }
 
 /**
