@@ -83,6 +83,8 @@ int main(int argc, const char** argv)
     }
     
     hashMapPrint(map);
+
+    fclose(file);
     
     timer = clock() - timer;
     printf("\nRan in %f seconds\n", (float)timer / (float)CLOCKS_PER_SEC);
@@ -91,6 +93,6 @@ int main(int argc, const char** argv)
     printf("Number of buckets: %d\n", hashMapCapacity(map));
     printf("Table load: %f\n", hashMapTableLoad(map));
     
-    //hashMapDelete(map);
+    hashMapDelete(map);
     return 0;
 }
