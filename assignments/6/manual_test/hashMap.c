@@ -202,30 +202,33 @@ void hashMapPut(HashMap* map, const char* key, int value)
     float loadFact;
     int mapCap = hashMapCapacity(map);
     int idx = HASH_FUNCTION(key) % hashMapCapacity(map);
-    HashLink* new = hashLinkNew(key, value, NULL);
-
-    assert(new != NULL);
 
     if (idx < 0) {
        idx += hashMapCapacity(map);
     }
 
-    if (map->table[idx] == NULL) {
-       map->table[idx] = new;
-    } else if (hashMapContainsKey(map, key)) {
-       int* val = hashMapGet(map, key);
-       (*val)++;
+    if (hashMapContainsKey(map, key)) {
+        int* val = hashMapGet(map, key);
+        (*val) += value;
     } else {
-       HashLink* cur = map->table[idx];
-           while(cur->next) {
-              if (strcmp(cur->key, key)) {
+        HashLink* new = hashLinkNew(key, value, NULL);
 
-              }
-              cur = cur->next;
-           }
-           cur->next = new;
+        assert(new != NULL);
+
+        if (map->table[idx] == NULL) {
+           map->table[idx] = new;
+        } else {
+           HashLink* cur = map->table[idx];
+               while(cur->next) {
+                  if (strcmp(cur->key, key)) {
+
+                  }
+                  cur = cur->next;
+               }
+               cur->next = new;
+        }
+        map->size++;
     }
-    map->size++;
 
     // loadFact = hashMapTableLoad(map);
 
