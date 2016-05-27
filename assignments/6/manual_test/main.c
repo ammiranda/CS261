@@ -43,7 +43,7 @@ char* nextWord(FILE* file)
 int main(int argc, const char** argv)
 {
     // FIXME: implement
-    const char* fileName = "input1.txt";
+    const char* fileName = "input3.txt";
     if (argc > 1)
     {
         fileName = argv[1];
@@ -52,22 +52,38 @@ int main(int argc, const char** argv)
     
     clock_t timer = clock();
     
-    HashMap* map = hashMapNew(10);
+    HashMap* map = hashMapNew(1);
     
     // --- Concordance code begins here ---
     // Be sure to free the word after you are done with it here.
     // --- Concordance code ends here ---
 
-    FILE *file = fopen(fileName, "r");
+    // FILE *file = fopen(fileName, "r");
 
-    char* word = nextWord(file);
+    // char* word = nextWord(file);
 
-    while (word != NULL) {
-    	hashMapPut(map, word, 1);
-    	free(word);
-    	word = nextWord(file);
-    }
-    
+    // while (word != NULL) {
+    // 	hashMapPut(map, word, 1);
+    // 	free(word);
+    // 	word = nextWord(file);
+    // }
+
+    hashMapPut(map, "ab", 0);
+    hashMapPut(map, "c", 1);
+    hashMapPut(map, "ba", 2);
+    hashMapPut(map, "f", 3);
+    hashMapPut(map, "gh", 4);
+
+    printf("%d\n", hashMapSize(map));
+    // hashMapRemove(map, "art");
+    // hashMapRemove(map, "Romeo");
+    hashMapRemove(map, "ab");
+    hashMapRemove(map, "c");
+    hashMapRemove(map, "ba");
+    hashMapRemove(map, "f");
+    hashMapRemove(map, "gh");
+    printf("%d\n", hashMapSize(map));
+
     hashMapPrint(map);
     
     timer = clock() - timer;
