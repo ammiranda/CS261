@@ -43,7 +43,7 @@ char* nextWord(FILE* file)
 int main(int argc, const char** argv)
 {
     // FIXME: implement
-    const char* fileName = "input1.txt";
+    const char* fileName = "input3.txt";
     if (argc > 1)
     {
         fileName = argv[1];
@@ -52,7 +52,7 @@ int main(int argc, const char** argv)
     
     clock_t timer = clock();
     
-    HashMap* map = hashMapNew(10);
+    HashMap* map = hashMapNew(1);
     
     // --- Concordance code begins here ---
     // Be sure to free the word after you are done with it here.
@@ -77,6 +77,6 @@ int main(int argc, const char** argv)
     printf("Number of buckets: %d\n", hashMapCapacity(map));
     printf("Table load: %f\n", hashMapTableLoad(map));
     
-    //hashMapDelete(map);
+    hashMapDelete(map);
     return 0;
 }
