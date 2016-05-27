@@ -88,14 +88,19 @@ void hashMapCleanUp(HashMap* map)
 
     assert(map != NULL);
 
-    HashLink *temp;
+    HashLink *next;
+    HashLink *cur;
 
     for (int i = 0; i < map->capacity; i++) {
-       temp = map->table[i];
-       while(map->table[i] != NULL) {
-          hashLinkDelete(map->table[i]);
+       cur = map->table[i];
+       while(cur != NULL) {
+          next = cur->next;
+          hashLinkDelete(cur);
+          cur = next;
        }
     }
+    free(map->table);
+    map->size = 0;
 }
 
 /**
@@ -171,16 +176,23 @@ void resizeTable(HashMap* map, int capacity)
     int tempSize = hashMapSize(map);
     int oldMapCap = hashMapCapacity(map);
     HashMap* temp = hashMapNew(capacity);
-    HashLink* tempOldLink;
-    HashLink* tempNewLink;
 
     for (int i = 0; i < oldMapCap; i++) {
+        HashLink* cur = map->table[i];
 
+        while (cur) {
+           hashMapPut(temp, cur->key, cur->value);
+           cur = cur->next;
+        }
     }
 
+    hashMapCleanUp(map);
+    map->size = temp->size;
+    map->table = temp->table;
+    map->capacity = temp->capacity;
 
-
-    map->capacity = capacity;
+    temp->table = NULL;
+    free(temp);
 }
 
 /**
@@ -230,11 +242,11 @@ void hashMapPut(HashMap* map, const char* key, int value)
         map->size++;
     }
 
-    // loadFact = hashMapTableLoad(map);
+    loadFact = hashMapTableLoad(map);
 
-    // if (loadFact >= MAX_TABLE_LOAD) {
-    //     resizeTable(map, 2 * mapCap);
-    // }
+    if (loadFact >= MAX_TABLE_LOAD) {
+        resizeTable(map, 2 * mapCap);
+    }
 
     hashMapPrint(map);
 }
@@ -275,6 +287,7 @@ void hashMapRemove(HashMap* map, const char* key)
         }
 
         hashLinkDelete(cur);
+        map->size--;
     }
 }
 
