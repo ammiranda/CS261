@@ -58,6 +58,7 @@ void loadDictionary(FILE* file, HashMap* map)
    
     while (word) {
        hashMapPut(map, word, 1);
+       free(word);
        word = nextWord(file);
     }
 
@@ -92,14 +93,22 @@ int main(int argc, const char** argv)
         scanf("%s", inputBuffer);
         
         // Implement the spell checker code here..
-	
-        
-        if (strcmp(inputBuffer, "quit") == 0)
-        {
-            quit = 1;
+        if (hashMapContainsKey(map, inputBuffer) && strcmp(inputBuffer, "quit") != 0) {
+           int idx = HASH_FUNCTION(inputBuffer) % hashMapCapacity(map);
+           HashLink* cur = map->table[idx];
+           printf("Possible matches:\n");
+
+           while (cur) {
+              printf("%s\n", cur->key);
+              cur = cur->next;
+           }
+
+        } else if (strcmp(inputBuffer, "quit") == 0) {
+           quit = 1;
+        } else {
+           printf("Word not found in dictionary!\n");
         }
     }
-    hashMapPrint(map);    
     hashMapDelete(map);
     return 0;
 }
