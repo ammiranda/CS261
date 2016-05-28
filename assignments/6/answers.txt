@@ -9,8 +9,8 @@ Date: May 25, 2016
 
 4. It is not possible for the hashMapTableLoad function to return different values when the same input file is used because the hashMapTableLoad function simply finds the ratio between the number of links (unique words) and the total number of buckets. The function does not track how many of the buckets are empty and the tables in both cases will resize at the same rate so number of unique words and total number of buckets will remain the same independent of the hashing function used.
 
-5. Yes it is possible for the hashMapEmptyBuckets method to return different values because the different hashFunctions will result in different numbers of collisions and therefore one hashTable will result in more empty buckets than the other.
+5. Yes, it is possible for the hashMapEmptyBuckets method to return different values because the different hashFunctions will result in different numbers of collisions and therefore one hashTable will result in more empty buckets than the other.
 
-6. Yes there is a difference in the number of empty buckets when the initial hash table size is set to an even number such as 1000 verses when the initial hash table size is set to an odd number such as 997.
+6. Yes, there is a difference in the number of empty buckets when the initial hash table size is set to an even number such as 1000 verses when the initial hash table size is set to an odd number such as 997.
 
 

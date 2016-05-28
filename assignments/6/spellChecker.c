@@ -77,10 +77,12 @@ int main(int argc, const char** argv)
 {
     // FIXME: implement
     HashMap* map = hashMapNew(1000);
-    
+   
+    printf("Opening dictionary.txt\n"); 
     FILE* file = fopen("dictionary.txt", "r");
     clock_t timer = clock();
     loadDictionary(file, map);
+    hashMapPrint(map);
     timer = clock() - timer;
     printf("Dictionary loaded in %f seconds\n", (float)timer / (float)CLOCKS_PER_SEC);
     fclose(file);
@@ -91,7 +93,7 @@ int main(int argc, const char** argv)
     {
         printf("Enter a word or \"quit\" to quit: ");
         scanf("%s", inputBuffer);
-        
+
         // Implement the spell checker code here..
         if (hashMapContainsKey(map, inputBuffer) && strcmp(inputBuffer, "quit") != 0) {
            int idx = HASH_FUNCTION(inputBuffer) % hashMapCapacity(map);
@@ -99,7 +101,11 @@ int main(int argc, const char** argv)
            printf("Possible matches:\n");
 
            while (cur) {
-              printf("%s\n", cur->key);
+              // Filtering returned links to only print keys of links that have
+              // keys that begin with the same leading letter
+              if (cur->key[0] == inputBuffer[0]) {
+                 printf("%s\n", cur->key);
+              }
               cur = cur->next;
            }
 
@@ -109,6 +115,8 @@ int main(int argc, const char** argv)
            printf("Word not found in dictionary!\n");
         }
     }
+
+    // Cleaned up the hashMap dictionary from the heap
     hashMapDelete(map);
     return 0;
 }
