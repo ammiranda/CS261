@@ -31,6 +31,16 @@ int hashFunction2(const char* key)
     return r;
 }
 
+unsigned long hashFunction3(const char* key) {
+    unsigned long hash = 5381;
+    int c;
+    while ((c = *key++)) {
+        hash = ((hash << 5) + hash) + c;
+    }
+
+    return hash;
+}
+
 /**
  * Creates a new hash table link with a copy of the key string.
  * @param key Key string to copy in the link.
@@ -394,7 +404,7 @@ void hashMapPrint(HashMap* map)
             printf("\nBucket %i ->", i);
             while (link != NULL)
             {
-                printf(" (%s, %d) ->", link->key, link->value);
+                printf(" %s: %d ->", link->key, link->value);
                 link = link->next;
             }
         }
