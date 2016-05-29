@@ -81,7 +81,11 @@ int main(int argc, const char** argv)
         free(word);
         word = nextWord(file);
     }
-    
+ 
+    // Invoking concordance print method
+    hashMapPrintConcord(map);
+   
+    // Invoking provided print method
     hashMapPrint(map);
 
     fclose(file);
