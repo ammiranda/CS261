@@ -88,14 +88,17 @@ int main(int argc, const char** argv)
     fclose(file);
     
     char inputBuffer[256];
+    char wordAddAnswer[50];
     int quit = 0;
+    int wordAddBool = 0;
     while (!quit)
-    {
-        printf("Enter a word or \"quit\" to quit: ");
+    {   
+
+        printf("Enter a word or \"/quit\" to quit: ");
         scanf("%s", inputBuffer);
 
         // Implement the spell checker code here..
-        if (hashMapContainsKey(map, inputBuffer) && strcmp(inputBuffer, "quit") != 0) {
+        if (hashMapContainsKey(map, inputBuffer)) {
            int idx = HASH_FUNCTION(inputBuffer) % hashMapCapacity(map);
            HashLink* cur = map->table[idx];
            printf("Possible matches:\n");
@@ -109,10 +112,26 @@ int main(int argc, const char** argv)
               cur = cur->next;
            }
 
-        } else if (strcmp(inputBuffer, "quit") == 0) {
+        } else if (strcmp(inputBuffer, "/quit") == 0) {
            quit = 1;
         } else {
            printf("Word not found in dictionary!\n");
+
+           wordAddBool = 1;           
+
+           while (wordAddBool) {
+              printf("Would you like to add your word to the dictionary? y/n: ");
+              scanf("%s", wordAddAnswer);
+              wordAddBool = 0;
+              if (strcmp(wordAddAnswer, "y") == 0) {
+                 hashMapPut(map, inputBuffer, 1);
+                 printf("Word added to dictionary!\n");
+              } else if (strcmp(wordAddAnswer, "n") == 0) {
+                 printf("Word ignored!\n");
+              } else {
+                 wordAddBool = 1;
+              }
+           }
         }
     }
 
