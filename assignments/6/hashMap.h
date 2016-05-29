@@ -40,6 +40,5 @@ int hashMapCapacity(HashMap* map);
 int hashMapEmptyBuckets(HashMap* map);
 float hashMapTableLoad(HashMap* map);
 void hashMapPrint(HashMap* map);
-void hashMapPrintConcord(HashMap* map);
 
 #endif

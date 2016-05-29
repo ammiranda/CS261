@@ -82,8 +82,18 @@ int main(int argc, const char** argv)
         word = nextWord(file);
     }
  
+    int hashMapCap = hashMapCapacity(map);
+
     // Invoking concordance print method
-    hashMapPrintConcord(map);
+    for (int i = 0; i < hashMapCap; i++) {
+       HashLink* cur = map->table[i];
+       if (cur != NULL) {
+          while (cur) {
+             printf("%s: %d\n", cur->key, cur->value);
+             cur = cur->next;
+          }
+       }
+    }
    
     // Invoking provided print method
     hashMapPrint(map);

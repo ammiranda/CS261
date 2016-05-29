@@ -401,23 +401,3 @@ void hashMapPrint(HashMap* map)
     }
     printf("\n");
 }
-
-/**
- * Prints all the links in each of the buckets in the table
- * according to what is specified for the Concordance assignment
-**/
-void hashMapPrintConcord(HashMap* map) 
-{
-   for (int i = 0; i < map->capacity; i++)
-   {
-      HashLink* link = map->table[i];
-      if (link != NULL)
-      {
-         while (link != NULL)
-         {
-            printf("%s: %d\n", link->key, link->value);
-            link = link->next;
-         }
-      }
-   }
-}
