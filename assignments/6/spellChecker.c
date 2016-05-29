@@ -106,9 +106,10 @@ int main(int argc, const char** argv)
            while (cur) {
               // Filtering returned links to only print keys of links that have
               // keys that begin with the same leading letter
-              if (cur->key[0] == inputBuffer[0]) {
+              
+              //if (cur->key[0] == inputBuffer[0]) {
                  printf("%s\n", cur->key);
-              }
+              //}
               cur = cur->next;
            }
 
