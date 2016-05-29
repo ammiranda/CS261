@@ -229,13 +229,10 @@ void hashMapPut(HashMap* map, const char* key, int value)
            map->table[idx] = new;
         } else {
            HashLink* cur = map->table[idx];
-               while(cur->next) {
-                  if (strcmp(cur->key, key)) {
-
-                  }
-                  cur = cur->next;
-               }
-               cur->next = new;
+           while(cur->next) {
+              cur = cur->next;
+           }
+           cur->next = new;
         }
         map->size++;
     }
