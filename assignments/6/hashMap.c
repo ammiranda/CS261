@@ -411,3 +411,19 @@ void hashMapPrint(HashMap* map)
     }
     printf("\n");
 }
+
+void hashMapPrintConcord(HashMap* map) 
+{
+   for (int i = 0; i < map->capacity; i++)
+   {
+      HashLink* link = map->table[i];
+      if (link != NULL)
+      {
+         while (link != NULL)
+         {
+            printf("%s: %d\n", link->key, link->value);
+            link = link->next;
+         }
+      }
+   }
+}

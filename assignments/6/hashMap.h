@@ -6,7 +6,7 @@
  * Assignment 6
  */
 
-#define HASH_FUNCTION hashFunction2
+#define HASH_FUNCTION hashFunction1
 #define MAX_TABLE_LOAD .75
 
 typedef struct HashMap HashMap;
@@ -40,5 +40,6 @@ int hashMapCapacity(HashMap* map);
 int hashMapEmptyBuckets(HashMap* map);
 float hashMapTableLoad(HashMap* map);
 void hashMapPrint(HashMap* map);
+void hashMapPrintConcord(HashMap* map);
 
 #endif
