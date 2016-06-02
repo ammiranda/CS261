@@ -178,6 +178,7 @@ int bfsIterative(Graph* graph, Vertex* source, Vertex* destination)
 
     while (!dequeIsEmpty(queue)) {
         Vertex *cur = dequeFront(queue);
+        dequePopBack(queue);
         cur->isVisited = 1;
 
         if (cur == destination) {
