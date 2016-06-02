@@ -126,6 +126,8 @@ int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
     // FIXME: Implement
     int isFound = 0;
 
+    clearVisited(graph);
+
     if (source == destination) {
        isFound = 1;
     }
@@ -171,6 +173,8 @@ int bfsIterative(Graph* graph, Vertex* source, Vertex* destination)
 {
     // FIXME: Implement
     int isFound = 0;
+
+    clearVisited(graph);
 
     if (source == destination) {
         isFound = 1;
