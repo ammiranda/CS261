@@ -128,7 +128,27 @@ int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
        return 1;
     }
 
-    cirListDeque *stack = malloc(sizeof(cirListDeque)); 
+    Deque *stack = dequeNew();
+    dequePushBack(stack, source);
+
+    while (!dequeIsEmpty(stack)) {
+        Vertex* cur = dequeBack(stack);
+        dequePopBack(stack);
+        cur->isVisited = 1;
+        if (cur == destination) {
+            return 1;
+        }
+
+        for (int i = 0; i < cur->numNeighbors; i++) {
+            if (!(cur->neighbors[i]->isVisited)) {
+                dequePushBack(stack, cur->neighbors[i]);
+            }
+        }
+    }
+
+    clearVisited(graph);
+    dequeClear(stack);
+    free(stack);
 
     return 0;
 }
@@ -147,6 +167,33 @@ int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
 int bfsIterative(Graph* graph, Vertex* source, Vertex* destination)
 {
     // FIXME: Implement
+
+    if (source == destination) {
+        return 1;
+    }
+
+    Deque *queue = dequeNew();
+
+    dequePushBack(queue, source);
+
+    while (!dequeIsEmpty(queue)) {
+        Vertex *cur = dequeFront(queue);
+        cur->isVisited = 1;
+
+        if (cur == destination) {
+            return 1;
+        }
+
+        for (int i = 0; i < cur->numNeighbors; i++) {
+            if (!(cur->neighbors[i]->isVisited)) {
+                dequePushBack(queue, cur->neighbors[i]);
+            }
+        }
+    }
+    clearVisited(graph);
+    dequeClear(queue);
+    free(queue);
+
     return 0;
 }
 
