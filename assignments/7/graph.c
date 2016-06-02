@@ -1,8 +1,8 @@
 /*
  * CS 261 Data Structure
  * Assignment 7
- * Name: 
- * Date: 
+ * Name: Alexander Miranda 
+ * Date: June 2, 2016
  */
 
 #include "graph.h"
@@ -124,6 +124,12 @@ int dfsRecursive(Graph* graph, Vertex* source, Vertex* destination)
 int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
 {
     // FIXME: Implement
+    if (source == destination) {
+       return 1;
+    }
+
+    cirListDeque *stack = malloc(sizeof(cirListDeque)); 
+
     return 0;
 }
 
