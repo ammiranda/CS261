@@ -124,19 +124,22 @@ int dfsRecursive(Graph* graph, Vertex* source, Vertex* destination)
 int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
 {
     // FIXME: Implement
+    int isFound = 0;
+
     if (source == destination) {
-       return 1;
+       isFound = 1;
     }
 
     Deque *stack = dequeNew();
     dequePushBack(stack, source);
 
-    while (!dequeIsEmpty(stack)) {
+    while (!isFound && !dequeIsEmpty(stack)) {
         Vertex* cur = dequeBack(stack);
         dequePopBack(stack);
         cur->isVisited = 1;
         if (cur == destination) {
-            return 1;
+            isFound = 1;
+            break;
         }
 
         for (int i = 0; i < cur->numNeighbors; i++) {
@@ -150,7 +153,7 @@ int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
     dequeClear(stack);
     free(stack);
 
-    return 0;
+    return isFound;
 }
 
 /**
@@ -167,22 +170,23 @@ int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
 int bfsIterative(Graph* graph, Vertex* source, Vertex* destination)
 {
     // FIXME: Implement
+    int isFound = 0;
 
     if (source == destination) {
-        return 1;
+        isFound = 1;
     }
 
     Deque *queue = dequeNew();
-
     dequePushBack(queue, source);
 
-    while (!dequeIsEmpty(queue)) {
+    while (!isFound && !dequeIsEmpty(queue)) {
         Vertex *cur = dequeFront(queue);
-        dequePopBack(queue);
+        dequePopFront(queue);
         cur->isVisited = 1;
 
         if (cur == destination) {
-            return 1;
+            isFound = 1;
+            break;
         }
 
         for (int i = 0; i < cur->numNeighbors; i++) {
@@ -191,11 +195,12 @@ int bfsIterative(Graph* graph, Vertex* source, Vertex* destination)
             }
         }
     }
+
     clearVisited(graph);
     dequeClear(queue);
     free(queue);
 
-    return 0;
+    return isFound;
 }
 
 typedef struct Edge Edge;
