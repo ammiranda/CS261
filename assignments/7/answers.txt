@@ -1,0 +1,12 @@
+Name: Alexander Miranda
+Date: June 2, 2016
+
+1. The graph in the provided code is represented as an adjacency matrix.
+
+2. Graphs 2 and 3 are connected because the main program's output shows each vertex having a path to all of the other existing vertices in the graph, either through dfs or bfs.
+
+3. If the graph is undirected then reversing the path of traversal would not be affected because the resulting edges can be crossed in either direction. The output would definitely change if the graph became directed because the accessible edges would change based on the starting and ending point changing.
+
+4. One disadvantage to bfs is that it uses more memory than dfs. The trade off to that is that bfs will visit all nodes reachable between the start and destination while that cannot be guarenteed by dfs. A dfs will only follow a single path similar to a human traversing a maze while a bfs will check all proximate possible paths. A dfs could possibly need to back track, however dfs could get lucky and find the solution faster than bfs. Bfs will always find the path if it exists and it will determine the shortest path. Dfs can get trapped in an "infinite" path while a bfs would not. 
+
+5. The runtime complexity of both bfs and dfs will be O(E) where E is the total number of edges in the graph.
