@@ -151,7 +151,6 @@ int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
         }
     }
 
-    clearVisited(graph);
     dequeDelete(stack);
 
     return isFound;
@@ -199,7 +198,6 @@ int bfsIterative(Graph* graph, Vertex* source, Vertex* destination)
         }
     }
 
-    clearVisited(graph);
     dequeDelete(queue);
 
     return isFound;
