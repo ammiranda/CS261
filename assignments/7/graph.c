@@ -152,8 +152,7 @@ int dfsIterative(Graph* graph, Vertex* source, Vertex* destination)
     }
 
     clearVisited(graph);
-    dequeClear(stack);
-    free(stack);
+    dequeDelete(stack);
 
     return isFound;
 }
@@ -201,8 +200,7 @@ int bfsIterative(Graph* graph, Vertex* source, Vertex* destination)
     }
 
     clearVisited(graph);
-    dequeClear(queue);
-    free(queue);
+    dequeDelete(queue);
 
     return isFound;
 }
